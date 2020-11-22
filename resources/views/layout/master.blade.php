@@ -56,7 +56,13 @@
     </header>
     <!-- Header -->
     
-    @yield("content")
+    <article class="container-fluid">
+        <article class="row">
+            <article class="col-xl-10 col-md-8 col-sm-12 mx-auto mt-5">
+              @yield("content")
+            </article>
+        </article>
+    </article>
     
     <!-- Footer -->
     <footer class="page-footer font-small special-color-dark pt-4 pb-0 bg-light">
