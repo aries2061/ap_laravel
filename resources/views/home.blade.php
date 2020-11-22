@@ -1,5 +1,9 @@
 @extends("layout.master")
 
+@section("pagetitle")
+  Blog - Home
+@endsection
+
 @section("content")
 
   <div class="jumbotron">

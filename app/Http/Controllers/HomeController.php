@@ -8,8 +8,16 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
-    public  function index(){
+    public function index(){
         $data = Post::orderBy('id','desc')->get();
         return view('home',compact('data'));
+    }
+
+    public function about(){
+        return view('about');
+    }
+
+    public function contact(){
+        return view('contact');
     }
 }
