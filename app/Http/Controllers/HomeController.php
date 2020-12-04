@@ -23,7 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $post = Post::orderBy("id","desc")->get();
+        // $post = Post::orderBy("id","desc")->get();
+        $post = Post::with("categories")->orderBy("id","desc")->get();
         return view("home",compact("post"));
     }
 

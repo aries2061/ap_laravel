@@ -20,7 +20,11 @@
               <h5 class="card-title">{{ $row->title }}</h5>
             </div>
             <div class="card-body">
-              <p class="card-text">{{ $row->description }}</p>
+              <p class="card-text">
+                {{ $row->description }}
+                <br>
+                <span class="badge badge-primary"> <i class="fas fa-tag mr-1"></i> {{ $row->categories->name}} </span>
+              </p>
               <div class="form-row">
                 <a href="/posts/{{ $row->id }}" class="btn btn-warning mr-2"><i class="fas fa-angle-double-right"></i></a>
                 <a href="/posts/{{ $row->id }}/edit" class="btn btn-info mr-2"><i class="fas fa-edit"></i></a>
