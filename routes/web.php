@@ -14,6 +14,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('about', [HomeController::class, 'about']);
-Route::get('contact', [HomeController::class, 'contact']);
+Route::resource('posts', HomeController::class);
+Route::get("/",[HomeController::class,"index"]);
+Route::get("/about",[HomeController::class,"about"])->name('aboutpage');
+Route::get("/contact",[HomeController::class,"contact"])->name('contactpage');

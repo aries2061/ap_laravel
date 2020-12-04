@@ -33,10 +33,10 @@
                 <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about">About</a>
+                <a class="nav-link" href="{{route('aboutpage')}}">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact">Contact</a>
+                <a class="nav-link" href="{{route('contactpage')}}">Contact</a>
               </li>
             </ul>
             <span class="navbar-text">
