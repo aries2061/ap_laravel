@@ -18,11 +18,17 @@
             @csrf
           <div class="form-group">
             <label for="title">Post</label>
-            <input type="text" name="title" class="form-control" id="title" placeholder="Enter Post Title">
+            <input type="text" name="title" class="form-control @error('title') border-danger @enderror" id="title" placeholder="Enter Post Title" value="{{ old('title') }}">
+            @error('title')
+                <div class="alert alert-danger mt-2">{{ $message }}</div>
+            @enderror
           </div>
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" name="description" id="description" placeholder="Enter Description" cols="30" rows="10"></textarea>
+            <textarea class="form-control @error('description') border-danger @enderror" name="description" id="description" placeholder="Enter Description" cols="30" rows="5">{{ old('description') }}</textarea>
+            @error('description')
+                <div class="alert alert-danger mt-2">{{ $message }}</div>
+            @enderror
           </div>
           <button type="submit" class="btn btn-success">Post</button>
         </form>

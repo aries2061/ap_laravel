@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\storePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -42,7 +43,7 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Post $post)
+    public function store(storePostRequest $request,Post $post)
     {
         $post->title = $request->title;
         $post->description = $request->description;
@@ -79,7 +80,7 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(storePostRequest $request, Post $post)
     {
         $post->title = $request->title;
         $post->description = $request->description;
