@@ -31,7 +31,18 @@
                 <div class="alert alert-danger mt-2">{{ $message }}</div>
             @enderror
           </div>
-          <button type="submit" class="btn btn-success">Update</button>
+
+          <select name="category_id" id="" class="form-control mb-2">
+              <option value="">Select Category</option>
+              @foreach($categories as $category)
+              <option value="{{$category->id}}" {{ $category->id==$post->category_id ? "selected":""}}>{{$category->name}}</option>
+              @endforeach
+          </select>
+
+          <div class="form-row">
+          <button type="submit" class="btn btn-success ml-1">Update</button>
+          <a href="/" class="btn btn-danger ml-2">Back</a>
+          </div>
         </form>
       </div>
     

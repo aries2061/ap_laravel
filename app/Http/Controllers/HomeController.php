@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\storePostRequest;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Http\Requests\storePostRequest;
 
 class HomeController extends Controller
 {
@@ -35,7 +36,8 @@ class HomeController extends Controller
      */
     public function create()
     {
-        return view("create");
+        $categories = Category::orderBy('id','desc')->get();
+        return view("create",compact("categories"));
     }
 
     /**
@@ -46,9 +48,12 @@ class HomeController extends Controller
      */
     public function store(storePostRequest $request,Post $post)
     {
-        $post->title = $request->title;
-        $post->description = $request->description;
-        $post->save();
+        $validated = $request->validated();
+        $post->create($validated);
+        // Post::create($validated);
+        // $post->title = $request->title;
+        // $post->description = $request->description;
+        // $post->save();
         return redirect("/posts");
     }
 
@@ -71,7 +76,8 @@ class HomeController extends Controller
      */
     public function edit(Post $post)
     {
-        return view("edit",compact("post"));
+        $categories = Category::orderBy('id','desc')->get();
+        return view("edit",compact("post","categories"));
     }
 
     /**
@@ -83,9 +89,11 @@ class HomeController extends Controller
      */
     public function update(storePostRequest $request, Post $post)
     {
-        $post->title = $request->title;
-        $post->description = $request->description;
-        $post->save();
+        $validated = $request->validated();
+        $post->update($validated);
+        // $post->title = $request->title;
+        // $post->description = $request->description;
+        // $post->save();
         return redirect("/");
     }
 

@@ -19,7 +19,10 @@
               <h5 class="card-title">{{ $post->title }}</h5>
             </div>
             <div class="card-body">
-              <p class="card-text">{{ $post->description }}</p>
+              <p class="card-text">{{ $post->description }}
+                <br>
+                <span class="badge badge-primary"> <i class="fas fa-tag mr-1"></i> {{ $post->categories->name}} </span><br>
+              </p>
               <a href="/" class="btn btn-success">Back</a>
             </div>
           </div>
