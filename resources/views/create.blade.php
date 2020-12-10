@@ -37,6 +37,8 @@
               <option value="{{$category->id}}">{{$category->name}}</option>
               @endforeach
           </select>
+
+          <input type="hidden" name="user_id" value="{{auth()->id()}}">
           
           <div class="form-row pl-1">
             <button type="submit" class="btn btn-success">Post</button>

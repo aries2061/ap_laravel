@@ -18,3 +18,8 @@ Route::resource('posts', HomeController::class);
 Route::get("/",[HomeController::class,"index"]);
 Route::get("/about",[HomeController::class,"about"])->name('aboutpage');
 Route::get("/contact",[HomeController::class,"contact"])->name('contactpage');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+

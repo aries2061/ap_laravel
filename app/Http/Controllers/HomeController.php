@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\storePostRequest;
 
 class HomeController extends Controller
 {
+    
     public function about(){
         return view("about");
     }
@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         // $post = Post::orderBy("id","desc")->get();
-        $post = Post::with("categories")->orderBy("id","desc")->get();
+        $post = Post::with("categories")->with("users")->orderBy("id","desc")->get();
         return view("home",compact("post"));
     }
 
@@ -50,10 +50,7 @@ class HomeController extends Controller
     {
         $validated = $request->validated();
         $post->create($validated);
-        // Post::create($validated);
-        // $post->title = $request->title;
-        // $post->description = $request->description;
-        // $post->save();
+
         return redirect("/posts");
     }
 
@@ -64,7 +61,12 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
-    {
+    {   
+        // if($post->user_id !== auth()->id()){
+        //     abort(403);
+        // }
+        
+        $this->authorize('view', $post);
         return view("show",compact("post"));
     }
 
@@ -76,6 +78,9 @@ class HomeController extends Controller
      */
     public function edit(Post $post)
     {
+        if($post->user_id !== auth()->id()){
+            abort(403);
+        }
         $categories = Category::orderBy('id','desc')->get();
         return view("edit",compact("post","categories"));
     }
@@ -89,6 +94,9 @@ class HomeController extends Controller
      */
     public function update(storePostRequest $request, Post $post)
     {
+        if($post->user_id !== auth()->id()){
+            abort(403);
+        }
         $validated = $request->validated();
         $post->update($validated);
         // $post->title = $request->title;
@@ -105,6 +113,9 @@ class HomeController extends Controller
      */
     public function destroy(Post $post)
     {
+        if($post->user_id !== auth()->id()){
+            abort(403);
+        }
         $post->delete();
         return redirect("/");
     }

@@ -23,7 +23,7 @@
     <!-- Header -->
     <header class="container-fluid head-banner p-4">
         <nav class="navbar navbar-expand-lg navbar-light mb-4 mt-2" style="background: rgba(0,0,0,0) !important;">
-          <a class="navbar-brand" href="#"><h4>Nature<i class="fas fa-leaf text-success"></i></h4></a>
+          <a class="navbar-brand" href="/"><h4>Nature<i class="fas fa-leaf text-success"></i></h4></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -38,6 +38,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{route('contactpage')}}">Contact</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">login</a>
+              </li>
             </ul>
             <span class="navbar-text">
                 <i class="fab fa-facebook pr-2"></i>
@@ -45,6 +48,16 @@
                 <i class="fab fa-twitter p-2"></i>
                 <i class="fab fa-youtube p-2"></i>
             </span>
+            <div class="btn-group dropleft">
+              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user"></i> {{Auth::user()->name}}
+              </button>
+              <div class="dropdown-menu">
+                <form action="/logout" method="POST">
+              </form>
+                <a class="dropdown-item" href="/logout">Logout</a>
+              </div>
+            </div>
           </div>
         </nav>
         <div class="row mb-4">

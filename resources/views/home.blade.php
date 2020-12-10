@@ -22,7 +22,9 @@
             <div class="card-body">
               <p class="card-text">
                 {{ $row->description }}
-                <br>
+                <br><br>
+                
+                <span class="badge badge-success"> <i class="fas fa-user-tag mr-1"></i>{{$row->users->name}} </span>
                 <span class="badge badge-primary"> <i class="fas fa-tag mr-1"></i> {{ $row->categories->name}} </span>
               </p>
               <div class="form-row">
