@@ -54,8 +54,9 @@
               </button>
               <div class="dropdown-menu">
                 <form action="/logout" method="POST">
-              </form>
-                <a class="dropdown-item" href="/logout">Logout</a>
+                  @csrf
+                  <input class="dropdown-item" type="submit" href="/logout">Logout               
+                </form>
               </div>
             </div>
           </div>

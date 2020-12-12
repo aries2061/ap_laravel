@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Category;
-use Illuminate\Routing\Controller;
+// use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\storePostRequest;
 
 class HomeController extends Controller
@@ -24,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (!Auth::check()) {
+            return redirect("/login");
+        }
         // $post = Post::orderBy("id","desc")->get();
         $post = Post::with("categories")->with("users")->orderBy("id","desc")->get();
         return view("home",compact("post"));
@@ -78,9 +82,7 @@ class HomeController extends Controller
      */
     public function edit(Post $post)
     {
-        if($post->user_id !== auth()->id()){
-            abort(403);
-        }
+        $this->authorize('view', $post);
         $categories = Category::orderBy('id','desc')->get();
         return view("edit",compact("post","categories"));
     }
@@ -94,9 +96,7 @@ class HomeController extends Controller
      */
     public function update(storePostRequest $request, Post $post)
     {
-        if($post->user_id !== auth()->id()){
-            abort(403);
-        }
+        $this->authorize('view', $post);
         $validated = $request->validated();
         $post->update($validated);
         // $post->title = $request->title;
@@ -113,9 +113,7 @@ class HomeController extends Controller
      */
     public function destroy(Post $post)
     {
-        if($post->user_id !== auth()->id()){
-            abort(403);
-        }
+        $this->authorize('view', $post);
         $post->delete();
         return redirect("/");
     }
